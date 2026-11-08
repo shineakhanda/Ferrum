@@ -1,0 +1,16 @@
+name: Feature request
+description: Suggest an optimization or setting
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: What should Ferrum do, and on which hardware would it help?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Profiler results, other mods that do something similar, links.

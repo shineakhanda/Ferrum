@@ -1,0 +1,41 @@
+{
+  "required": true,
+  "package": "dev.ferrum.client.mixin",
+  "plugin": "dev.ferrum.client.compat.FerrumMixinPlugin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8.7",
+  "client": [
+    "EntityRenderDispatcherMixin",
+    "BlockEntityRenderDispatcherMixin",
+    "ParticleEngineMixin",
+    "ParticleAccessor",
+    "FontMixin",
+    "CloudRendererMixin",
+    "WeatherEffectRendererMixin",
+    "SkyRendererMixin",
+    "FogRendererMixin",
+    "EntityMixin",
+    "ClientLevelMixin",
+    "SectionCompilerMixin",
+    "SectionCompilerResultsMixin",
+    "CompiledSectionMeshMixin",
+    "ModelBlockRendererMixin",
+    "TextureAtlasMixin",
+    "LevelRendererMixin",
+    "GameRendererMixin",
+    "DebugEntrySystemSpecsMixin",
+    "OptionsSubScreenAccessor",
+    "VideoSettingsReplaceMixin",
+    "EntityRendererMixin",
+    "SpriteContentsMixin",
+    "SectionCompilerAccessor",
+    "TerrainDrawMixin",
+    "LightmapMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

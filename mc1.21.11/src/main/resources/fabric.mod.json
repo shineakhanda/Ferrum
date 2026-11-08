@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "ferrum",
+  "version": "${version}",
+  "name": "Ferrum",
+  "description": "Client-side rendering optimizations for low-end PCs and Android: block face culling, occlusion culling, FSR render scale, render pass optimization and a full video settings screen.",
+  "authors": [
+    "Ferrum Contributors"
+  ],
+  "contact": ${contact},
+  "license": "MIT",
+  "icon": "assets/ferrum/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.ferrum.client.FerrumClient"
+    ],
+    "modmenu": [
+      "dev.ferrum.client.compat.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    {
+      "config": "ferrum.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "${minecraft_dependency}",
+    "java": "${java_dependency}",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "modmenu": "*"
+  }
+}

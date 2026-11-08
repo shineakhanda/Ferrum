@@ -1,0 +1,39 @@
+name: Bug report
+description: Crash, rendering problem or other bug
+labels: [bug]
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Minecraft, Ferrum, Fabric Loader and Fabric API versions
+      placeholder: "Minecraft 1.21.11, Ferrum 1.0.0+1.21.11, Loader 0.20.1, Fabric API 0.141.6"
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: Device
+      description: CPU, GPU and RAM. On Android also the launcher and GL layer.
+      placeholder: "Snapdragon 7 Gen 1, 8 GB, Zalith 1.4, MobileGlues"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened
+      description: What you did, what you expected and what happened instead. Screenshots help.
+    validations:
+      required: true
+  - type: input
+    id: log
+    attributes:
+      label: Log
+      description: Upload latest.log (and the crash report) to https://mclo.gs and paste the link.
+    validations:
+      required: true
+  - type: textarea
+    id: mods
+    attributes:
+      label: Other mods
+      description: Does it happen with only Fabric API and Ferrum installed?

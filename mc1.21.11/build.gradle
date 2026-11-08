@@ -1,0 +1,85 @@
+plugins {
+    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+}
+
+version = "${project.mod_version}+${project.minecraft_version}"
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/releases/"
+        content { includeGroup "com.terraformersmc" }
+    }
+}
+
+loom {
+    splitEnvironmentSourceSets()
+
+    mods {
+        "ferrum" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modCompileOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
+}
+
+processResources {
+    def props = [
+        version: project.version,
+        minecraft_dependency: project.minecraft_dependency,
+        java_dependency: project.java_dependency,
+        contact: ferrumContactJson()
+    ]
+    inputs.properties props
+
+    filesMatching("fabric.mod.json") {
+        expand props
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
+    it.options.encoding = "UTF-8"
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    def projectName = project.name
+    inputs.property "projectName", projectName
+    from(file("../LICENSE")) {
+        rename { "${it}_$projectName" }
+    }
+}
+
+// Version-independent code shared with the 26.3 build
+sourceSets.client.java.srcDir '../common/src/client/java'
+
+// fabric.mod.json "contact" block, built from gradle.properties so no placeholder URLs ship.
+def ferrumContactJson() {
+    def entries = []
+    ["homepage": "mod_homepage", "sources": "mod_sources", "issues": "mod_issues"].each { key, prop ->
+        def value = project.findProperty(prop)?.toString()?.trim()
+        if (value) {
+            entries << "\"${key}\": \"${value}\""
+        }
+    }
+    return "{" + entries.join(", ") + "}"
+}
